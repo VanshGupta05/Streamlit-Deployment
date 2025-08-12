@@ -1,0 +1,3 @@
+# Requirements of libraries imported in the program
+import streamlit as st
+import yfinance as yf
