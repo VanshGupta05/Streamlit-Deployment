@@ -1,3 +1,2 @@
-# Requirements of libraries imported in the program
-pip install streamlit
-pip install yfinance
+streamlit
+yfinance
