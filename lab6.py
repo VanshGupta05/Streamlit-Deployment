@@ -15,6 +15,14 @@ period = st.sidebar.selectbox("Select Time Period", ["5d", "1mo", "3mo", "6mo", 
 if st.sidebar.button("Track Stock"):
     st.session_state.selected_stock = ticker.upper()
 
+st.sidebar.header("Your Watchlist")
+if st.session_state.watchlist:
+    for stock_symbol in st.session_state.watchlist:
+        if st.sidebar.button(stock_symbol):
+            st.session_state.selected_stock = stock_symbol
+else:
+    st.sidebar.info("Watchlist is empty")
+
 if "selected_stock" in st.session_state:
     stock = yf.Ticker(st.session_state.selected_stock)
     try:
@@ -36,13 +44,6 @@ if "selected_stock" in st.session_state:
                 st.warning("Already in watchlist")
     except:
         st.error("Invalid stock symbol or data unavailable")
-
-st.sidebar.header("Your Watchlist")
-if st.session_state.watchlist:
-    for stock in st.session_state.watchlist:
-        st.sidebar.markdown(f"- {stock}")
-else:
-    st.sidebar.info("Watchlist is empty")
 
 st.markdown("---")
 st.markdown("Built with Streamlit and Yahoo Finance")
